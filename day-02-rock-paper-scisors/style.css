@@ -1,0 +1,175 @@
+/* ===========================================================
+   Rock, Paper, Scissors — Retro Arcade theme
+   Pure CSS over the existing Bootstrap markup.
+   =========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-deep: #0d0221;
+    --bg-mid: #1a0938;
+    --neon-pink: #ff2e88;
+    --neon-cyan: #05d9e8;
+    --neon-yellow: #f9f871;
+    --neon-green: #39ff14;
+    --text: #e7e7ff;
+}
+
+/* ---------- Arcade screen background ---------- */
+html, body {
+    min-height: 100%;
+    font-family: "Press Start 2P", "Courier New", monospace;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 50% 0%, var(--bg-mid), var(--bg-deep) 75%);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* CRT scanline overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0)        0px,
+        rgba(0, 0, 0, 0)        2px,
+        rgba(0, 0, 0, 0.25)     3px,
+        rgba(0, 0, 0, 0.25)     4px
+    );
+}
+
+/* Glowing grid floor */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        linear-gradient(rgba(5, 217, 232, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(5, 217, 232, 0.12) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: linear-gradient(to bottom, transparent 55%, #000 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 55%, #000 100%);
+}
+
+main.container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin-top: 3rem !important;
+    padding: 2.5rem 1.5rem 3rem;
+    border: 4px solid var(--neon-cyan);
+    border-radius: 12px;
+    background: rgba(13, 2, 33, 0.6);
+    box-shadow:
+        0 0 12px var(--neon-cyan),
+        inset 0 0 25px rgba(5, 217, 232, 0.15);
+}
+
+/* ---------- Title ---------- */
+h1 {
+    font-size: clamp(1.1rem, 4vw, 2rem);
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: var(--neon-pink);
+    text-shadow:
+        0 0 6px var(--neon-pink),
+        0 0 14px var(--neon-pink),
+        3px 3px 0 var(--neon-cyan);
+    animation: title-pulse 1.2s steps(2) infinite alternate;
+}
+
+@keyframes title-pulse {
+    from { text-shadow: 0 0 4px var(--neon-pink), 0 0 10px var(--neon-pink), 3px 3px 0 var(--neon-cyan); }
+    to   { text-shadow: 0 0 10px var(--neon-pink), 0 0 22px var(--neon-pink), 3px 3px 0 var(--neon-cyan); }
+}
+
+/* ---------- Scoreboard ---------- */
+main > p {
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+    letter-spacing: 1px;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 8px rgba(249, 248, 113, 0.7);
+}
+
+/* ---------- Move buttons (arcade keys) ---------- */
+.btn.btn-primary {
+    font-family: "Press Start 2P", monospace;
+    font-size: clamp(0.6rem, 2vw, 0.85rem);
+    width: 100%;
+    padding: 1.1rem 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--bg-deep);
+    background: var(--neon-cyan);
+    border: 3px solid #fff;
+    border-radius: 8px;
+    box-shadow:
+        0 6px 0 #037c86,
+        0 8px 14px rgba(0, 0, 0, 0.6),
+        0 0 14px var(--neon-cyan);
+    transition: transform 0.06s ease, box-shadow 0.06s ease, background 0.15s ease;
+}
+
+#rock.btn.btn-primary    { background: var(--neon-pink);  box-shadow: 0 6px 0 #99003e, 0 8px 14px rgba(0,0,0,0.6), 0 0 14px var(--neon-pink); }
+#paper.btn.btn-primary   { background: var(--neon-cyan);  box-shadow: 0 6px 0 #037c86, 0 8px 14px rgba(0,0,0,0.6), 0 0 14px var(--neon-cyan); }
+#scissors.btn.btn-primary{ background: var(--neon-green); box-shadow: 0 6px 0 #1d8c0a, 0 8px 14px rgba(0,0,0,0.6), 0 0 14px var(--neon-green); }
+
+.btn.btn-primary:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+.btn.btn-primary:active {
+    transform: translateY(6px);
+    box-shadow:
+        0 0 0 #000,
+        0 1px 4px rgba(0, 0, 0, 0.7),
+        0 0 10px currentColor;
+}
+
+.btn.btn-primary:focus {
+    outline: none;
+    box-shadow:
+        0 6px 0 rgba(0, 0, 0, 0.4),
+        0 0 18px #fff;
+}
+
+/* Give each move-button column some breathing room on small screens */
+.row .col {
+    padding: 0.5rem;
+}
+
+#resultText {
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+    letter-spacing: 1px;
+    color: var(--neon-yellow);
+    text-shadow: 0 0 8px rgba(249, 248, 113, 0.7);
+}
+
+#playerChoice, #computerChoice {
+    font-weight: bold;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 6px var(--neon-cyan);
+}
+
+#computerChoice {
+    color: var(--neon-pink);
+    text-shadow: 0 0 6px var(--neon-pink);
+    text-shadow: 0 0 6px var(--neon-pink);
+}
+
+
+
