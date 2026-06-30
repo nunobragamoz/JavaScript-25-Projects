@@ -1,0 +1,180 @@
+/* ===========================================================
+   Lucky Number Machine — Casino theme
+   Pure CSS styling layered over the existing Bootstrap markup.
+   =========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --felt-dark: #0a3d24;
+    --felt-light: #115c36;
+    --gold: #f5c542;
+    --gold-deep: #b8860b;
+    --casino-red: #c0152f;
+    --casino-red-dark: #7e0d1d;
+    --neon: #ffe27a;
+    --cream: #fdf6e3;
+}
+
+/* ---------- Page / felt table background ---------- */
+body {
+    min-height: 100vh;
+    font-family: "Georgia", "Times New Roman", serif;
+    color: var(--cream);
+    background:
+        radial-gradient(circle at 50% 25%, var(--felt-light) 0%, var(--felt-dark) 70%, #041d11 100%);
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Subtle diamond felt texture overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        linear-gradient(45deg, rgba(255, 255, 255, 0.025) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.025) 75%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.025) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.025) 75%);
+    background-size: 28px 28px;
+    background-position: 0 0, 14px 14px;
+}
+
+/* ---------- The "table" card ---------- */
+main .container {
+    max-width: 560px;
+    margin: 4rem auto !important;
+    padding: 2.5rem 2rem 3rem;
+    border-radius: 24px;
+    background: radial-gradient(circle at 50% 0%, var(--felt-light), var(--felt-dark));
+    border: 6px solid var(--gold);
+    box-shadow:
+        0 0 0 3px var(--gold-deep),
+        0 0 35px rgba(0, 0, 0, 0.6),
+        inset 0 0 60px rgba(0, 0, 0, 0.45);
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Marquee title ---------- */
+h1 {
+    font-family: "Georgia", serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    animation: marquee-glow 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes marquee-glow {
+    from { text-shadow: 0 0 4px var(--neon), 0 0 10px var(--gold-deep), 0 2px 2px rgba(0, 0, 0, 0.6); }
+    to   { text-shadow: 0 0 10px var(--neon), 0 0 22px var(--gold),      0 2px 2px rgba(0, 0, 0, 0.6); }
+}
+
+/* ---------- The lucky number display (slot window) ---------- */
+#numberDisplay {
+    width: 220px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #1b1b1b, #000);
+    border: 5px solid var(--gold);
+    box-shadow:
+        inset 0 0 25px rgba(0, 0, 0, 0.9),
+        0 0 18px rgba(245, 197, 66, 0.5);
+}
+
+#luckyNumber {
+    font-family: "Courier New", monospace;
+    font-weight: 900;
+    color: var(--casino-red);
+    text-shadow:
+        0 0 8px var(--casino-red),
+        0 0 18px var(--casino-red-dark),
+        0 0 30px var(--casino-red);
+    animation: number-flicker 2.5s ease-in-out infinite;
+}
+
+@keyframes number-flicker {
+    0%, 100% { opacity: 1; }
+    48%      { opacity: 0.85; }
+    50%      { opacity: 0.6; }
+    52%      { opacity: 0.9; }
+}
+
+/* ---------- Status text ---------- */
+#status {
+    min-height: 1.5rem;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: var(--neon);
+    text-shadow: 0 0 6px rgba(255, 226, 122, 0.6);
+}
+
+/* ---------- The big chip-like button ---------- */
+#generateBtn {
+    font-family: "Georgia", serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--cream);
+    padding: 0.85rem 2.2rem;
+    border: 4px dashed var(--gold);
+    border-radius: 50px;
+    cursor: pointer;
+    background: linear-gradient(180deg, var(--casino-red), var(--casino-red-dark));
+    box-shadow:
+        0 6px 0 var(--casino-red-dark),
+        0 8px 18px rgba(0, 0, 0, 0.5),
+        inset 0 0 12px rgba(255, 255, 255, 0.15);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.2s ease;
+}
+
+#generateBtn:hover {
+    filter: brightness(1.12);
+    background: linear-gradient(180deg, var(--casino-red), var(--casino-red-dark));
+    box-shadow:
+        0 6px 0 var(--casino-red-dark),
+        0 10px 24px rgba(245, 197, 66, 0.45),
+        inset 0 0 14px rgba(255, 255, 255, 0.25);
+}
+
+#generateBtn:active {
+    transform: translateY(5px);
+    box-shadow:
+        0 1px 0 var(--casino-red-dark),
+        0 2px 8px rgba(0, 0, 0, 0.6),
+        inset 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+#generateBtn:focus {
+    outline: none;
+}
+
+/* ---------- History list — stacked "winnings" ---------- */
+#history {
+    margin-top: 2.5rem !important;
+    background: transparent;
+}
+
+#history .list-group-item {
+    margin-bottom: 0.5rem;
+    border: 2px solid var(--gold-deep);
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+    color: var(--gold);
+    font-family: "Courier New", monospace;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
