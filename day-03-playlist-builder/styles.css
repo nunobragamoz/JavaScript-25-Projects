@@ -1,0 +1,207 @@
+/* ===========================================================
+   Playlist Builder — Music App theme (Spotify-inspired)
+   Pure CSS over the existing Bootstrap markup.
+   =========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-top: #1db954;      /* Spotify green */
+    --bg-deep: #121212;
+    --panel: #181818;
+    --panel-hover: #282828;
+    --green: #1db954;
+    --green-bright: #1ed760;
+    --text: #ffffff;
+    --text-dim: #b3b3b3;
+}
+
+/* ---------- App shell ---------- */
+body {
+    min-height: 100vh;
+    font-family: "Montserrat", system-ui, sans-serif;
+    color: var(--text);
+    background:
+        linear-gradient(180deg, rgba(29, 185, 84, 0.35) 0%, var(--bg-deep) 340px),
+        var(--bg-deep);
+    background-attachment: fixed;
+    padding-bottom: 6rem; /* room for the fake now-playing bar */
+}
+
+.container {
+    max-width: 640px;
+    padding-top: 1rem;
+}
+
+/* ---------- Header ---------- */
+h1 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Add-song row (search bar feel) ---------- */
+#songInput.form-control {
+    background: #2a2a2a;
+    border: 1px solid transparent;
+    border-radius: 500px;
+    color: var(--text);
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    box-shadow: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#songInput.form-control::placeholder {
+    color: var(--text-dim);
+}
+
+#songInput.form-control:focus {
+    background: #313131;
+    border-color: var(--green);
+    box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.25);
+    color: var(--text);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 500px;
+    border: none;
+    padding: 0.6rem 1.6rem;
+    text-transform: capitalize;
+    transition: transform 0.08s ease, filter 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.04);
+    filter: brightness(1.05);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Primary green "play"-style add button */
+#addBtn.btn.btn-primary {
+    background: var(--green);
+    color: #000;
+}
+#addBtn.btn.btn-primary:hover {
+    background: var(--green-bright);
+}
+
+/* Control pills — recolored to sit in the dark theme */
+#shuffleBtn.btn.btn-warning {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid #7d7d7d;
+}
+#shuffleBtn.btn.btn-warning:hover {
+    border-color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#reverseBtn.btn.btn-success {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid #7d7d7d;
+}
+#reverseBtn.btn.btn-success:hover {
+    border-color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+#clearBtn.btn.btn-danger {
+    background: transparent;
+    color: #f0616d;
+    border: 1px solid #f0616d;
+}
+#clearBtn.btn.btn-danger:hover {
+    background: rgba(240, 97, 109, 0.12);
+    color: #ff7b86;
+}
+
+/* Space the control buttons evenly */
+.row:nth-of-type(2) {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+.row:nth-of-type(2) .btn {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* ---------- Song counter ---------- */
+#counter {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.25rem;
+}
+
+/* ---------- Playlist ---------- */
+#playlist.list-group {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--panel);
+    counter-reset: track;
+}
+
+#playlist .list-group-item {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    transition: background 0.15s ease;
+}
+
+#playlist .list-group-item:last-child {
+    border-bottom: none;
+}
+
+#playlist .list-group-item:hover {
+    background: var(--panel-hover);
+}
+
+/* Track number + tiny equalizer icon before each song */
+#playlist .list-group-item::before {
+    counter-increment: track;
+    content: counter(track);
+    color: var(--text-dim);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    min-width: 1.5rem;
+    text-align: right;
+}
+
+#playlist .list-group-item::after {
+    content: "🎵";
+    margin-left: auto;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+/* Highlight the first track like a "now playing" row */
+#playlist .list-group-item:first-child {
+    color: var(--green-bright);
+}
+#playlist .list-group-item:first-child::before {
+    color: var(--green-bright);
+}

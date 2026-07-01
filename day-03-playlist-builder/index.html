@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta name="author" content="Nuno Braga">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Playlist Builder - by Nuno Braga">
+    <title>Playlist Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 class="text-center my-4">🎵 Playlist Builder 🎵 </h1>
+
+        <div class="row">
+
+            <input type="text" class="form-control mb-3" id="songInput" placeholder="Song name">
+            <button class="btn btn-primary mb-3" id="addBtn">Add Song</button>
+            <p id="counter">Songs in playlist: 0</p>
+
+        </div>
+
+        <div class="row">
+
+            <button class="btn btn-warning mb-3" id="shuffleBtn">Shuffle</button>
+            <button class="btn btn-success mb-3" id="reverseBtn">Reverse</button>
+            <button class="btn btn-danger mb-3" id="clearBtn">Clear all</button>
+        
+        </div>
+
+        <div class="row">
+            <ul class="list-group" id="playlist"></ul>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
