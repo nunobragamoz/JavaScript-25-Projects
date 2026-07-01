@@ -11,9 +11,10 @@
 # What it does:
 #   1. Verifies the project folder exists.
 #   2. Inserts a card for it into the landing page (index.html).
-#   3. Commits the project folder as its own commit.
-#   4. Commits the landing-page update.
-#   5. Pushes to GitHub (Pages redeploys automatically).
+#   3. Adds a row for it to the README.md projects table.
+#   4. Commits the project folder as its own commit.
+#   5. Commits the landing-page + README update.
+#   6. Pushes to GitHub (Pages redeploys automatically).
 
 set -euo pipefail
 
@@ -49,6 +50,22 @@ if grep -q "href=\"$FOLDER/\"" index.html; then
     echo "Error: a card for '$FOLDER' already exists in index.html." >&2
     exit 1
 fi
+if [ ! -f "README.md" ]; then
+    echo "Error: README.md not found. Run this from the repo root." >&2
+    exit 1
+fi
+if ! grep -q "NEW_PROJECT_ROW" README.md; then
+    echo "Error: insertion marker <!-- NEW_PROJECT_ROW --> not found in README.md." >&2
+    exit 1
+fi
+if grep -q "($FOLDER/)" README.md; then
+    echo "Error: a row for '$FOLDER' already exists in README.md." >&2
+    exit 1
+fi
+
+# --- derive the day number (e.g. "Day 03" -> "03") for the README table ---
+DAY_NUM="$(printf '%s' "$DAY" | grep -oE '[0-9]+' | head -1)"
+DAY_NUM="${DAY_NUM:-$DAY}"
 
 # --- build the card HTML ---
 read -r -d '' CARD <<EOF || true
@@ -75,14 +92,30 @@ CARD="$CARD" awk '
 
 echo "✓ Added card for '$TITLE' to index.html"
 
+# --- build the README table row and insert it before the marker ---
+BASE_URL="https://nunobragamoz.github.io/JavaScript-25-Projects"
+ROW="| ${DAY_NUM} | [${TITLE}](${FOLDER}/) | [Play](${BASE_URL}/${FOLDER}/) |"
+
+ROW="$ROW" awk '
+    /<!-- NEW_PROJECT_ROW -->/ && !done {
+        print ENVIRON["ROW"]
+        done = 1
+        print
+        next
+    }
+    { print }
+' README.md > README.md.tmp && mv README.md.tmp README.md
+
+echo "✓ Added row for '$TITLE' to README.md"
+
 # --- commit each part separately, then push ---
 git add "$FOLDER"
 git commit -q -m "Add ${DAY} - ${TITLE}"
 echo "✓ Committed project folder '$FOLDER'"
 
-git add index.html
-git commit -q -m "Add ${TITLE} card to landing page"
-echo "✓ Committed landing-page update"
+git add index.html README.md
+git commit -q -m "Add ${TITLE} to landing page and README"
+echo "✓ Committed landing-page + README update"
 
 git push -q origin main
 echo "✓ Pushed to GitHub — Pages will redeploy shortly."
