@@ -1,0 +1,204 @@
+/* ===========================================================
+   Book Wishlist — Cozy Library theme
+   Pure CSS over the existing Bootstrap markup.
+   =========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@700;800&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --paper: #f6efe2;
+    --paper-card: #fffdf8;
+    --ink: #3b2f2a;
+    --ink-soft: #6f6157;
+    --leather: #7b3f2c;
+    --leather-dark: #5c2c1d;
+    --gold: #c8a45c;
+    --sage: #4f7a5c;
+    --sage-dark: #3c6047;
+    --crimson: #a23b34;
+}
+
+/* ---------- Warm parchment backdrop ---------- */
+body {
+    min-height: 100vh;
+    font-family: "Lora", Georgia, serif;
+    color: var(--ink);
+    line-height: 1.6;
+    background:
+        radial-gradient(circle at 50% -10%, #fbf6ec 0%, var(--paper) 55%, #ece1cd 100%);
+    background-attachment: fixed;
+    padding-bottom: 4rem;
+}
+
+/* Subtle paper grain */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(123, 63, 44, 0.03) 0px, rgba(123, 63, 44, 0.03) 1px, transparent 1px, transparent 4px);
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    padding-top: 3rem;
+}
+
+/* ---------- Title (book cover feel) ---------- */
+h1 {
+    font-family: "Playfair Display", "Lora", serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--leather-dark);
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 3px double var(--gold);
+    margin-bottom: 2rem !important;
+}
+
+h1::before { content: "📚 "; }
+
+/* ---------- Add-book input (bookmark card) ---------- */
+#bookInput.form-control {
+    font-family: "Lora", serif;
+    font-size: 1.05rem;
+    padding: 0.75rem 1rem;
+    color: var(--ink);
+    background: var(--paper-card);
+    border: 1px solid #d9cbb2;
+    border-radius: 8px 8px 0 0;
+    box-shadow: inset 0 1px 3px rgba(59, 47, 42, 0.08);
+}
+
+#bookInput.form-control::placeholder {
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+#bookInput.form-control:focus {
+    background: #fff;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(200, 164, 92, 0.25);
+    color: var(--ink);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    font-family: "Lora", serif;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.4rem;
+    transition: transform 0.08s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover  { filter: brightness(1.06); transform: translateY(-1px); }
+.btn:active { transform: translateY(1px); }
+
+/* Add — leather-bound primary */
+#addBtn.btn.btn-primary {
+    width: 100%;
+    background: linear-gradient(180deg, var(--leather), var(--leather-dark));
+    color: #fdf3e3;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 3px 8px rgba(92, 44, 29, 0.3);
+}
+
+/* Clear — muted crimson */
+#clearBtn.btn.btn-danger {
+    flex: 1;
+    background: transparent;
+    color: var(--crimson);
+    border: 1.5px solid var(--crimson);
+}
+#clearBtn.btn.btn-danger:hover {
+    background: rgba(162, 59, 52, 0.08);
+}
+
+/* Sort — sage green */
+#sortBtn.btn.btn-success {
+    flex: 1;
+    background: linear-gradient(180deg, var(--sage), var(--sage-dark));
+    color: #f3f8f2;
+    box-shadow: 0 3px 8px rgba(60, 96, 71, 0.25);
+}
+
+/* Lay the Clear / Sort buttons side by side with a gap */
+.col-md-6.offset-md-3:last-of-type {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+}
+
+/* ---------- Book list (shelf of spines) ---------- */
+#wishlist.list-group {
+    width: 100%;
+    gap: 0.6rem;
+    background: transparent;
+}
+
+#wishlist .list-group-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--paper-card);
+    color: var(--ink);
+    border: 1px solid #e3d7bf;
+    border-left: 6px solid var(--leather);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    font-size: 1.05rem;
+    box-shadow: 0 2px 5px rgba(59, 47, 42, 0.08);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, border-left-color 0.12s ease;
+}
+
+#wishlist .list-group-item:hover {
+    transform: translateX(3px);
+    border-left-color: var(--gold);
+    box-shadow: 0 4px 12px rgba(59, 47, 42, 0.15);
+}
+
+/* Little book icon before each title */
+#wishlist .list-group-item::before {
+    content: "📖";
+    font-size: 1rem;
+}
+
+/* Remove buttons inside list items, if the JS adds them */
+#wishlist .btn-outline-danger,
+#wishlist .btn-sm {
+    margin-left: auto;
+    border-radius: 6px;
+    border: 1px solid var(--crimson);
+    color: var(--crimson);
+    background: transparent;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+}
+#wishlist .btn-outline-danger:hover,
+#wishlist .btn-sm:hover {
+    background: var(--crimson);
+    color: #fff;
+}
+
+/* ---------- Counter ---------- */
+#counter {
+    margin-top: 1.25rem !important;
+    text-align: center;
+    font-style: italic;
+    color: var(--ink-soft);
+    letter-spacing: 0.5px;
+}
