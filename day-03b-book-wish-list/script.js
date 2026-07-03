@@ -46,21 +46,6 @@ wishlist.addEventListener('click', function(event) {
 
 });
 
-function sortBooks() {
-  books.sort((a, b) => a.title.localeCompare(b.title));
-  render();
-}
-
-sortBtn.addEventListener('click', sortBooks);
-
-function clearBooks() {
-  books.length = 0;
-  render();
-}
-
-clearBtn.addEventListener('click', clearBooks);
-
-
 function render() {
 
     wishlist.innerHTML = '';
@@ -86,5 +71,24 @@ function render() {
 
     counter.textContent = `Books in wishlist: ${books.length} | Read: ${readCount}`;
 }
+
+function sortBooks() {
+    
+  books.sort((a, b) => a.title.localeCompare(b.title));
+  render();
+}
+
+sortBtn.addEventListener('click', sortBooks);
+
+function clearBooks() {
+
+  books.length = 0;
+  render();
+}
+
+clearBtn.addEventListener('click', clearBooks);
+
+
+
 
 
