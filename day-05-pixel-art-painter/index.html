@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta name="author" content="Nuno Braga">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pixel Art Painter - by Nuno Braga">
+    <title>Pixel Art Painter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    
+
+</head>
+
+<body>
+
+    <div class="container py-5">
+
+        <h1 class="text-center mb-4">Pixel Art Painter 🎨</h1>
+
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-12 col-md-4 align-items-center">
+
+                <h2 class="h4 mb-3">Color Palette</h2>
+
+                <div id="colorPalette" class="d-flex flex-wrap align-items-center gap-2 mb-3">
+
+                    <input type="color" id="colorPicker" class="form-control form-control-color" value="#e24b4a" title="Pick a color">
+                    <button id="palette-0" class="btn btn-sm btn-outline-secondary" data-color="#212529">Black</button>
+                    <button id="palette-1" class="btn btn-sm btn-outline-secondary" data-color="#e24b4a">Red</button>
+                    <button id="palette-2" class="btn btn-sm btn-outline-secondary" data-color="#f4b400">Yellow</button>
+                    <button id="palette-3" class="btn btn-sm btn-outline-secondary" data-color="#378add">Blue</button>
+                    <button id="palette-4" class="btn btn-sm btn-outline-secondary" data-color="#5dcaa5">Teal</button>
+               
+                </div>
+
+                <div class="d-flex gap-2">
+
+                    <button id="clearBtn" class="btn btn-outline-danger">Clear</button>
+                    <button id="saveBtn" class="btn btn-primary">Save</button>
+                
+                </div>
+
+            </div>
+
+            <div class="col-12 col-md-8">
+
+                <div id="grid"></div>
+                
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+
+</body>
+
+</html>

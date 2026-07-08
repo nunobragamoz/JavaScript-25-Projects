@@ -1,0 +1,30 @@
+#grid {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 1px;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+  background: #ddd;
+  margin: 1rem auto;
+  border: 1px solid #ccc;
+}
+
+.cell {
+  background: #ffffff;
+  cursor: crosshair;
+}
+
+.palette-swatch {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #333;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.palette-swatch.selected {
+  border-color: #ff0000;
+}
+
