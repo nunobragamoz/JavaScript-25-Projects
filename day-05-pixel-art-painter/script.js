@@ -17,6 +17,7 @@ function buildGrid() {
 }
 
 buildGrid();
+loadArt();
 
 function loadArt() {
   const saved = localStorage.getItem('pixelArt');
@@ -64,18 +65,20 @@ colorPalette.addEventListener('click', function(event) {
 
 const cells = grid.querySelectorAll('.cell');
 
-function clearGrid() {
+
+
+clearBtn.addEventListener('click', function clearGrid() {
   const cells = grid.querySelectorAll('.cell');
   for (const cell of cells) {
     cell.style.backgroundColor = '#ffffff';
   }
-}
+});
 
-function saveArt() {
+saveBtn.addEventListener('click', function saveArt() {
   const cells = grid.querySelectorAll('.cell');
   const colors = [];
   for (const cell of cells) {
     colors.push(cell.style.backgroundColor);
   }
   localStorage.setItem('pixelArt', JSON.stringify(colors));
-}
+});
