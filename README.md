@@ -14,6 +14,7 @@ A 25-day journey of small projects built with HTML, CSS & vanilla JavaScript, by
 | 03 | [Book Wishlist 📚](day-03b-book-wish-list/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-03b-book-wish-list/) |
 | 04 | [Student Report Card 📚](day-04-student-report-card/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-04-student-report-card/) |
 | 05 | [Pixel Art Painter 🎨](day-05-pixel-art-painter/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-05-pixel-art-painter/) |
+| 06 | [Keyboard Drum Kit 🥁](day-06-keyboard-drum-kit/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-06-keyboard-drum-kit/) |
 <!-- NEW_PROJECT_ROW -->
 
 ## Tech
