@@ -1,0 +1,52 @@
+body {
+  background: linear-gradient(135deg, #1d2b64, #f8cdda);
+  min-height: 100vh;
+}
+
+h1 {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.timer-card {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(4px);
+}
+
+/* Big monospaced countdown so digits don't jump around */
+#display {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  color: #1d2b64;
+  line-height: 1;
+}
+
+/* Turn the display red when time runs low (add .low via JS) */
+#display.low {
+  color: #dc3545;
+}
+
+.status {
+  min-height: 1.5em;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.status.done {
+  color: #dc3545;
+  font-weight: 700;
+}
+
+.form-label {
+  color: #1d2b64;
+  letter-spacing: 1px;
+}
+
+footer {
+  color: rgba(255, 255, 255, 0.85);
+  font-family: sans-serif;
+}
