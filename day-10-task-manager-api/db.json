@@ -1,0 +1,17 @@
+{
+  "tarefas": [
+    {
+      "titulo": "Ir ao Hipermercado",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "titulo": "Marcar consulta"
+    },
+    {
+      "titulo": "Go just go",
+      "id": "k_du2veLFKA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
