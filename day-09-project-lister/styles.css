@@ -1,0 +1,42 @@
+.projeto-card {
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  border-left: 5px solid transparent;
+  background: #f8f9fa;
+}
+
+.projeto-card strong {
+  display: block;
+  font-size: 1.1rem;
+}
+
+.projeto-card p {
+  margin: 0.4rem 0;
+  color: #495057;
+}
+
+.projeto-status {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.projeto-ativo {
+  background: #e6f4ea;
+  border-left-color: #34a853;
+}
+
+.projeto-ativo .projeto-status {
+  color: #1e7e34;
+}
+
+.projeto-concluido {
+  background: #f1f3f4;
+  border-left-color: #9aa0a6;
+}
+
+.projeto-concluido .projeto-status {
+  color: #5f6368;
+}

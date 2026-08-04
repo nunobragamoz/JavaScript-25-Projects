@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "nome": "Website de Loja Online",
+    "descricao": "Desenvolvimento de um website para vendas de produtos.",
+    "status": "Ativo"
+  },
+  {
+    "id": 2,
+    "nome": "App de Gestão de Tarefas",
+    "descricao": "Aplicação móvel para organizar tarefas do dia a dia.",
+    "status": "Concluído"
+  },
+  {
+    "id": 3,
+    "nome": "Redesign do Blog Pessoal",
+    "descricao": "Renovação visual e melhoria de desempenho do blog.",
+    "status": "Ativo"
+  },
+  {
+    "id": 4,
+    "nome": "Dashboard de Vendas",
+    "descricao": "Painel interativo com métricas e gráficos de vendas.",
+    "status": "Concluído"
+  },
+  {
+    "id": 5,
+    "nome": "Newsletter Automatizada",
+    "descricao": "Sistema de envio automático de newsletters semanais.",
+    "status": "Ativo"
+  }
+]
