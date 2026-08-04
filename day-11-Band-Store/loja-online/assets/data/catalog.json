@@ -1,0 +1,119 @@
+{
+  "store": {
+    "name": "Linkin Park Store",
+    "currency": "EUR",
+    "locale": "pt-PT"
+  },
+  "categories": [
+    {
+      "id": "musica",
+      "name": "Música"
+    },
+    {
+      "id": "vestuario",
+      "name": "Vestuário"
+    },
+    {
+      "id": "acessorios",
+      "name": "Acessórios"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Vinil Hybrid Theory (20.º Aniversário)",
+      "description": "Reedição em vinil de 180 g do álbum de estreia, com capa gatefold, encarte de 12 páginas e remasterização feita a partir das fitas originais.",
+      "price": "34.90",
+      "category": "musica",
+      "image": "assets/images/vinil-hybrid-theory.webp"
+    },
+    {
+      "id": "2",
+      "name": "Vinil Meteora",
+      "description": "O segundo álbum em vinil preto de 180 g, com a arte de parede original impressa em grande formato e código de descarregamento digital incluído.",
+      "price": "32.00",
+      "category": "musica",
+      "image": "assets/images/vinil-meteora.webp"
+    },
+    {
+      "id": "3",
+      "name": "CD Minutes to Midnight",
+      "description": "Edição em CD do álbum de 2007 em digipack, com livrete de letras completo e fotografias de estúdio inéditas da gravação.",
+      "price": "14.99",
+      "category": "musica",
+      "image": "assets/images/cd-minutes-to-midnight.webp"
+    },
+    {
+      "id": "4",
+      "name": "Box Set From Zero",
+      "description": "Caixa de colecionador do regresso da banda: vinil colorido, CD, poster dobrável, cartões de fotografia e certificado numerado.",
+      "price": "89.90",
+      "category": "musica",
+      "image": "assets/images/box-set-from-zero.jpg"
+    },
+    {
+      "id": "5",
+      "name": "T-shirt Hybrid Theory Soldier",
+      "description": "T-shirt preta em algodão 100% com o soldado alado de Hybrid Theory estampado à frente e o logótipo da banda nas costas. Corte unissexo, de S a XXL.",
+      "price": "24.99",
+      "category": "vestuario",
+      "image": "assets/images/tshirt-hybrid-theory.jpeg"
+    },
+    {
+      "id": "6",
+      "name": "Hoodie Meteora Stencil",
+      "description": "Sweatshirt com capuz em cinza betão e grafismo stencil da era Meteora aplicado em serigrafia. Interior escovado, bolso canguru e cordão entrançado.",
+      "price": "54.90",
+      "category": "vestuario",
+      "image": "assets/images/hoodie-meteora.jpeg"
+    },
+    {
+      "id": "7",
+      "name": "T-shirt Bleed It Out",
+      "description": "Tributo a Minutes to Midnight com lettering desgastado e efeito vintage lavado. Tecido leve, ideal para concertos de verão.",
+      "price": "22.50",
+      "category": "vestuario",
+      "image": "assets/images/tshirt-bleed-it-out.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Casaco Bomber Road to Revolution",
+      "description": "Bomber acolchoado inspirado na digressão Road to Revolution, com patch bordado no peito e a lista de datas impressa no forro interior.",
+      "price": "79.90",
+      "category": "vestuario",
+      "image": "assets/images/bomber-road-to-revolution.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Poster Meteora Wall Art A2",
+      "description": "Impressão A2 em papel mate de 200 g com a arte de parede de Meteora. Enviado enrolado em tubo rígido para não vincar.",
+      "price": "12.00",
+      "category": "acessorios",
+      "image": "assets/images/poster-meteora.jpeg"
+    },
+    {
+      "id": "10",
+      "name": "Caneca In The End",
+      "description": "Caneca de cerâmica de 330 ml com um verso de In The End impresso a branco sobre preto mate. Resistente à máquina de lavar loiça.",
+      "price": "11.50",
+      "category": "acessorios",
+      "image": "assets/images/caneca-in-the-end.webp"
+    },
+    {
+      "id": "11",
+      "name": "Boné LP Logo",
+      "description": "Boné de seis painéis com o monograma LP bordado a fio âmbar e fecho metálico ajustável na parte de trás.",
+      "price": "19.90",
+      "category": "acessorios",
+      "image": "assets/images/bone-lp-logo.webp"
+    },
+    {
+      "id": "12",
+      "name": "Kit de Palhetas Signature",
+      "description": "Conjunto de seis palhetas de guitarra em três espessuras diferentes, cada uma com o grafismo de um álbum da banda.",
+      "price": "8.50",
+      "category": "acessorios",
+      "image": "assets/images/palhetas-signature.jpg"
+    }
+  ]
+}

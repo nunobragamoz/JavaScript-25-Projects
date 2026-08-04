@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+
+    <!-- ============ Meta básicos ============ -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0b0c">
+
+    <title>Contacto | Linkin Park Store</title>
+
+    <!-- ============ SEO ============ -->
+
+    <meta name="author" content="Nuno Braga">
+    <meta name="description"
+        content="Fala com a Linkin Park Store: formulário de contacto, morada da loja em Lisboa, horário, telefone, email e mapa para chegares até nós.">
+    <meta name="keywords"
+        content="Linkin Park, loja online, contacto, formulário, morada, mapa, Lisboa, apoio ao cliente, encomendas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nunobraga.example/loja-online/includes/contacto.html">
+
+    <!-- Open Graph: como a página aparece quando é partilhada -->
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Linkin Park Store">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:title" content="Contacto | Linkin Park Store">
+    <meta property="og:description"
+        content="Morada, horário, telefone e formulário de contacto da Linkin Park Store.">
+    <meta property="og:url" content="https://nunobraga.example/loja-online/includes/contacto.html">
+    <meta property="og:image" content="../assets/images/banda-grupo.webp">
+    <meta property="og:image:alt" content="Os seis elementos dos Linkin Park em fotografia de grupo sobre fundo vermelho.">
+
+    <!-- Twitter Card -->
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contacto | Linkin Park Store">
+    <meta name="twitter:description" content="Morada, horário, telefone e formulário de contacto da Linkin Park Store.">
+    <meta name="twitter:image" content="../assets/images/banda-grupo.webp">
+
+    <!-- Ícone do separador, em SVG embutido (evita um pedido extra ao servidor) -->
+
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='4'%20fill='%230b0b0c'/%3E%3Ctext%20x='16'%20y='23'%20font-family='sans-serif'%20font-size='15'%20font-weight='700'%20fill='%23ff6b1a'%20text-anchor='middle'%3ELP%3C/text%3E%3C/svg%3E">
+
+    <!-- Dados estruturados (schema.org): aqui o tipo é ContactPage, e a loja vem
+         lá dentro com a morada, o telefone e o horário certinhos. -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contacto | Linkin Park Store",
+        "url": "https://nunobraga.example/loja-online/includes/contacto.html",
+        "mainEntity": {
+            "@type": "Store",
+            "name": "Linkin Park Store",
+            "image": "../assets/images/banda-grupo.webp",
+            "email": "geral@linkinparkstore.pt",
+            "telephone": "+351200000000",
+            "priceRange": "8€ - 90€",
+            "currenciesAccepted": "EUR",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rua da Prata, 120",
+                "postalCode": "1100-421",
+                "addressLocality": "Lisboa",
+                "addressCountry": "PT"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 38.7223,
+                "longitude": -9.1393
+            },
+            "openingHours": ["Mo-Fr 10:00-19:00", "Sa 10:00-13:00"]
+        }
+    }
+    </script>
+
+    <!-- ============ Bootstrap, Fontes e Estilos ============ -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- A página está dentro de /includes, por isso todos os caminhos do
+         projeto sobem um nível com ../ -->
+
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
+</head>
+
+<body>
+
+    <!-- Ligação de salto: primeiro elemento focável, para quem navega por teclado -->
+
+    <a class="skip-link" href="#main-content">Saltar para o conteúdo principal</a>
+
+    <!-- ============ Header ============ -->
+
+    <!-- O menu está de propósito fora do <header>: um elemento sticky só se cola
+         dentro do pai onde está, e o <header> acaba a seguir ao banner. Lá
+         dentro, o menu ia-se embora com o banner e deixava de acompanhar a
+         página. Como filho direto do <body>, o pai é a página toda. -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="main-nav" aria-label="Navegação principal">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="../index.html">
+
+                <!-- alt vazio: o logótipo repete o texto que vem a seguir, logo é decorativo -->
+                <img src="../assets/images/lp-logo.png" class="brand-logo" alt="" width="496" height="481">
+                <span class="brand-text">Linkin Park <em>Store</em></span>
+
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir ou fechar o menu de navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+                <!-- Estamos noutro ficheiro, por isso as âncoras levam o index.html à frente.
+                     O aria-current diz ao leitor de ecrã em que página estamos. -->
+
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#hero">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#filter-section">Filtrar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#product-list">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#order-form">Calcular</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contacto.html"
+                            aria-current="page">Contacto</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <header>
+
+        <!-- Banner: o mesmo da página inicial, só que mais baixo (classe hero-page),
+             porque aqui o que interessa é o formulário e não a fotografia. -->
+
+        <div class="hero hero-page" id="hero">
+
+            <div class="container hero-inner">
+
+                <p class="hero-kicker">Apoio ao cliente &middot; Encomendas</p>
+                <h1 class="hero-title">Contacto<span class="hero-title-sub">Fala connosco</span></h1>
+
+                <p class="hero-lead">
+                    Dúvidas sobre um <em>vinil</em>, o estado de uma encomenda ou o tamanho de uma
+                    <em>t-shirt</em>? Escreve-nos, liga ou aparece na loja &mdash; respondemos sempre.
+                </p>
+
+            </div>
+
+            <!-- Faixa decorativa: escondida dos leitores de ecrã por não ter valor informativo -->
+
+            <div class="hero-marquee" aria-hidden="true">
+
+                <div class="hero-marquee-track">
+
+                    <span>Hybrid Theory</span><span>&bull;</span><span>Meteora</span><span>&bull;</span>
+                    <span>Minutes to Midnight</span><span>&bull;</span><span>A Thousand Suns</span><span>&bull;</span>
+                    <span>Living Things</span><span>&bull;</span><span>From Zero</span><span>&bull;</span>
+                    <span>Hybrid Theory</span><span>&bull;</span><span>Meteora</span><span>&bull;</span>
+                    <span>Minutes to Midnight</span><span>&bull;</span><span>A Thousand Suns</span><span>&bull;</span>
+                    <span>Living Things</span><span>&bull;</span><span>From Zero</span><span>&bull;</span>
+
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main id="main-content">
+
+        <!-- ==== 1. Formulário + Informações ==== -->
+
+        <section id="contact-section" class="section" aria-labelledby="contact-title">
+
+            <div class="container">
+
+                <h2 class="section-title" id="contact-title">Envia-nos uma mensagem</h2>
+                <p class="section-subtitle">Preenche os campos abaixo. Os que têm asterisco são obrigatórios.</p>
+
+                <div class="row g-4">
+
+                    <!-- Formulário: fica com a coluna larga por ser o conteúdo principal -->
+
+                    <div class="col-lg-7">
+
+                        <!-- novalidate desliga as bolhas do browser: a validação é feita
+                             por contacto.js, para as mensagens saírem todas em português
+                             e no mesmo sítio. -->
+
+                        <form id="contact-form" class="contact-card" novalidate>
+
+                            <div class="row g-3">
+
+                                <div class="col-md-6">
+
+                                    <label for="name" class="form-label">Nome *</label>
+
+                                    <input type="text" id="name" name="name" class="form-control"
+                                        placeholder="Primeiro e último nome" autocomplete="name"
+                                        aria-describedby="contact-error" required>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label for="email" class="form-label">Email *</label>
+
+                                    <input type="email" id="email" name="email" class="form-control"
+                                        placeholder="nome@exemplo.pt" autocomplete="email"
+                                        aria-describedby="contact-error" required>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label for="phone" class="form-label">Telefone</label>
+
+                                    <input type="tel" id="phone" name="phone" class="form-control"
+                                        placeholder="+351 900 000 000" autocomplete="tel"
+                                        aria-describedby="phone-help contact-error">
+
+                                    <span id="phone-help" class="field-help">Opcional. Só se preferires resposta por
+                                        telefone.</span>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <label for="subject" class="form-label">Assunto *</label>
+
+                                    <select id="subject" name="subject" class="form-select"
+                                        aria-describedby="contact-error" required>
+                                        <option value="">-- Escolhe um assunto --</option>
+                                        <option value="encomenda">Estado de uma encomenda</option>
+                                        <option value="produto">Dúvida sobre um produto</option>
+                                        <option value="stock">Reposição de stock</option>
+                                        <option value="devolucao">Trocas e devoluções</option>
+                                        <option value="outro">Outro assunto</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="col-12">
+
+                                    <label for="message" class="form-label">Mensagem *</label>
+
+                                    <textarea id="message" name="message" class="form-control" rows="6"
+                                        maxlength="500" placeholder="Conta-nos com algum detalhe o que precisas."
+                                        aria-describedby="message-help contact-error" required></textarea>
+
+                                    <!-- O contador é atualizado por contacto.js a cada tecla -->
+
+                                    <!-- Os dois limites são escritos pelo contacto.js, a partir das
+                                         mesmas constantes que fazem a validação. -->
+
+                                    <span id="message-help" class="field-help">
+                                        Mínimo de <span id="min-count">20</span> caracteres &mdash;
+                                        <span id="char-count">0</span>/<span id="max-count">500</span>.
+                                    </span>
+
+                                </div>
+
+                                <div class="col-12">
+
+                                    <div class="form-check consent-check">
+
+                                        <input type="checkbox" id="consent" name="consent" class="form-check-input"
+                                            aria-describedby="contact-error" required>
+
+                                        <label for="consent" class="form-check-label">
+                                            Autorizo o tratamento dos meus dados para efeitos de resposta a este
+                                            contacto. *
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Mensagem de validação. role="alert" faz o leitor de ecrã anunciá-la de imediato. -->
+
+                            <p id="contact-error" class="form-error" role="alert"></p>
+
+                            <!-- Confirmação de envio. role="status" é mais discreto: espera pela pausa. -->
+
+                            <p id="contact-success" class="form-success" role="status" aria-live="polite" hidden></p>
+
+                            <div class="order-actions">
+
+                                <button type="submit" class="btn btn-accent">Enviar mensagem</button>
+
+                                <button type="button" id="clear-contact" class="btn-ghost">Limpar formulário</button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                    <!-- Informações da loja: morada, horário e contactos diretos -->
+
+                    <div class="col-lg-5">
+
+                        <h3 class="visually-hidden">Dados da loja</h3>
+
+                        <ul class="info-list">
+
+                            <li class="info-card">
+
+                                <span class="info-icon" aria-hidden="true">&#9679;</span>
+
+                                <div>
+                                    <h4 class="info-title">Morada</h4>
+
+                                    <!-- <address> é o elemento próprio para dados de contacto -->
+
+                                    <address class="info-text">
+                                        Rua da Prata, 120<br>
+                                        1100-421 Lisboa<br>
+                                        Portugal
+                                    </address>
+                                </div>
+
+                            </li>
+
+                            <li class="info-card">
+
+                                <span class="info-icon" aria-hidden="true">&#9679;</span>
+
+                                <div>
+                                    <h4 class="info-title">Horário</h4>
+
+                                    <p class="info-text">
+                                        Segunda a sexta &mdash; 10h00 &agrave;s 19h00<br>
+                                        Sábado &mdash; 10h00 &agrave;s 13h00<br>
+                                        Domingos e feriados &mdash; encerrado
+                                    </p>
+                                </div>
+
+                            </li>
+
+                            <li class="info-card">
+
+                                <span class="info-icon" aria-hidden="true">&#9679;</span>
+
+                                <div>
+                                    <h4 class="info-title">Contactos diretos</h4>
+
+                                    <p class="info-text">
+                                        <a href="mailto:geral@linkinparkstore.pt">geral@linkinparkstore.pt</a><br>
+                                        <a href="tel:+351200000000">+351 200 000 000</a><br>
+                                        <span class="info-note">Chamada para a rede fixa nacional.</span>
+                                    </p>
+                                </div>
+
+                            </li>
+
+                            <li class="info-card">
+
+                                <span class="info-icon" aria-hidden="true">&#9679;</span>
+
+                                <div>
+                                    <h4 class="info-title">Tempo de resposta</h4>
+
+                                    <p class="info-text">
+                                        Respondemos por email em 24 a 48 horas úteis.
+                                        Encomendas em atraso têm prioridade.
+                                    </p>
+                                </div>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==== 2. Mapa ==== -->
+
+        <section id="map-section" class="section section-alt" aria-labelledby="map-title">
+
+            <div class="container">
+
+                <h2 class="section-title" id="map-title">Onde estamos</h2>
+                <p class="section-subtitle">A dois minutos a pé da estação do Rossio, em plena Baixa lisboeta.</p>
+
+                <!-- Mapa montado pelo contacto.js a partir dos tiles do OpenStreetMap.
+                     Comecei por usar o <iframe> do próprio OpenStreetMap, mas há
+                     browsers e extensões que recusam mostrar páginas de outros sítios
+                     dentro de um iframe e o mapa ficava em branco. Os tiles são
+                     imagens PNG normais, por isso aparecem sempre. -->
+
+                <div class="map-frame">
+
+                    <!-- role="img" + aria-label: para um leitor de ecrã isto é uma
+                         imagem só, e não uma dúzia de quadradinhos soltos. -->
+
+                    <div id="map-canvas" class="map-canvas" role="img"
+                        aria-label="Mapa da Baixa de Lisboa com a Linkin Park Store assinalada na Rua da Prata">
+                        <!-- Tiles inseridos por contacto.js -->
+                    </div>
+
+                    <!-- Marcador da loja: fica sempre no centro da moldura -->
+
+                    <span class="map-pin" aria-hidden="true"></span>
+
+                    <div class="map-controls">
+                        <button type="button" id="map-zoom-in" class="map-btn" aria-label="Aproximar o mapa">+</button>
+                        <button type="button" id="map-zoom-out" class="map-btn"
+                            aria-label="Afastar o mapa">&minus;</button>
+                    </div>
+
+                    <!-- A atribuição é obrigatória por quem usa os tiles do OpenStreetMap -->
+
+                    <p class="map-credit">
+                        &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank"
+                            rel="noopener">OpenStreetMap</a>
+                    </p>
+
+                    <!-- Só aparece se nem um tile chegar (sem internet, por exemplo) -->
+
+                    <p id="map-fallback" class="map-fallback" hidden>
+                        Não foi possível carregar o mapa.<br>
+                        Estamos na <strong>Rua da Prata, 120 &mdash; 1100-421 Lisboa</strong>.
+                    </p>
+
+                </div>
+
+                <p class="map-note">
+                    <a href="https://www.openstreetmap.org/?mlat=38.7223&amp;mlon=-9.1393#map=16/38.7223/-9.1393"
+                        target="_blank" rel="noopener">Abrir o mapa em página inteira</a>
+                    &middot; Metro: Baixa-Chiado (linhas azul e verde)
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ============ Footer ============ -->
+
+    <footer id="site-footer">
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-md-5">
+
+                    <img src="../assets/images/lp-logo.png" class="footer-logo" alt="Logótipo dos Linkin Park" width="496"
+                        height="481">
+
+                    <h2 class="footer-brand">Linkin Park <em>Store</em></h2>
+
+                    <p class="footer-note">
+                        Projeto académico sem fins comerciais, desenvolvido no âmbito do
+                        Caso Prático de Final de Módulo &mdash; JavaScript Avançado.
+                        Não é uma loja real nem tem ligação à banda.
+                    </p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h3 class="footer-title">Categorias</h3>
+
+                    <ul class="footer-list">
+                        <li>Música</li>
+                        <li>Vestuário</li>
+                        <li>Acessórios</li>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <h3 class="footer-title">Contacto</h3>
+
+                    <ul class="footer-list">
+                        <li><a href="mailto:geral@linkinparkstore.pt">geral@linkinparkstore.pt</a></li>
+                        <li><a href="tel:+351200000000">+351 200 000 000</a></li>
+                        <li>Lisboa, Portugal</li>
+                        <li><a href="contacto.html">Formulário e mapa</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <hr class="footer-rule">
+            <p class="footer-copy">&copy; 2026 Nuno Luis Braga &middot; Master D &middot; Desenvolvedor Full Stack</p>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+    <!-- Esta página tem o seu próprio ficheiro: o scripts.js trata do catálogo,
+         do lightbox e da calculadora, que aqui não existem. -->
+
+    <script src="../assets/js/contacto.js" defer></script>
+
+</body>
+
+</html>

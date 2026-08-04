@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+
+    <!-- ============ Meta básicos ============ -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0b0c">
+
+    <title>Linkin Park Store | Vinis, Vestuário e Acessórios da Banda</title>
+
+    <!-- ============ SEO ============ -->
+
+    <meta name="author" content="Nuno Braga">
+    <meta name="description"
+        content="Loja online de merchandising dos Linkin Park: vinis de Hybrid Theory e Meteora, t-shirts, hoodies, posters e acessórios. Filtra por categoria e calcula o total do teu pedido.">
+    <meta name="keywords"
+        content="Linkin Park, merchandising, loja online, vinil, Hybrid Theory, Meteora, t-shirt, hoodie, poster, acessórios, banda">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nunobraga.example/loja-online/">
+
+    <!-- Open Graph: como a página aparece quando é partilhada -->
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Linkin Park Store">
+    <meta property="og:locale" content="pt_PT">
+    <meta property="og:title" content="Linkin Park Store | Vinis, Vestuário e Acessórios da Banda">
+    <meta property="og:description"
+        content="Vinis, t-shirts, hoodies, posters e acessórios inspirados nos Linkin Park. Filtra por categoria e calcula o total do teu pedido.">
+    <meta property="og:url" content="https://nunobraga.example/loja-online/">
+    <meta property="og:image" content="assets/images/banda-grupo.webp">
+    <meta property="og:image:alt" content="Os seis elementos dos Linkin Park em fotografia de grupo sobre fundo vermelho.">
+
+    <!-- Twitter Card -->
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Linkin Park Store | Vinis, Vestuário e Acessórios da Banda">
+    <meta name="twitter:description"
+        content="Vinis, t-shirts, hoodies, posters e acessórios inspirados nos Linkin Park.">
+    <meta name="twitter:image" content="assets/images/banda-grupo.webp">
+
+    <!-- Ícone do separador, em SVG embutido (evita um pedido extra ao servidor) -->
+
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='4'%20fill='%230b0b0c'/%3E%3Ctext%20x='16'%20y='23'%20font-family='sans-serif'%20font-size='15'%20font-weight='700'%20fill='%23ff6b1a'%20text-anchor='middle'%3ELP%3C/text%3E%3C/svg%3E">
+
+    <!-- Dados estruturados (schema.org): ajudam os motores de busca a perceber
+         que isto é uma loja. A lista de produtos é acrescentada por scripts.js. -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "Linkin Park Store",
+        "description": "Loja online de merchandising inspirado na banda Linkin Park. Projeto académico.",
+        "image": "assets/images/banda-grupo.webp",
+        "priceRange": "8€ - 90€",
+        "currenciesAccepted": "EUR",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Braga",
+            "addressCountry": "PT"
+        }
+    }
+    </script>
+
+    <!-- ============ Bootstrap, Fontes e Estilos ============ -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+
+<body>
+
+    <!-- Ligação de salto: primeiro elemento focável, para quem navega por teclado -->
+
+    <a class="skip-link" href="#main-content">Saltar para o conteúdo principal</a>
+
+    <!-- ============ Header ============ -->
+
+    <!-- O menu está de propósito fora do <header>: um elemento sticky só se cola
+         dentro do pai onde está, e o <header> acaba a seguir ao banner. Lá
+         dentro, o menu ia-se embora com o banner e deixava de acompanhar a
+         página. Como filho direto do <body>, o pai é a página toda. -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" id="main-nav" aria-label="Navegação principal">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="#hero">
+
+                <!-- alt vazio: o logótipo repete o texto que vem a seguir, logo é decorativo -->
+                <img src="assets/images/lp-logo.png" class="brand-logo" alt="" width="496" height="481">
+                <span class="brand-text">Linkin Park <em>Store</em></span>
+
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir ou fechar o menu de navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#filter-section">Filtrar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#product-list">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#order-form">Calcular</a></li>
+                    <!-- Único link que sai do index: o contacto tem página própria, em /includes -->
+                    <li class="nav-item"><a class="nav-link" href="includes/contacto.html">Contacto</a></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <header>
+
+        <!-- Banner -->
+
+        <div class="hero" id="hero">
+
+            <div class="container hero-inner">
+
+                <p class="hero-kicker">Merchandising &middot; Edição de fã</p>
+                <h1 class="hero-title">Linkin&nbsp;Park<span class="hero-title-sub">Band Store</span></h1>
+
+                <p class="hero-lead">
+                    Vinis, vestuário e acessórios inspirados em <em>Hybrid Theory</em>, <em>Meteora</em>
+                    e em tudo o que veio depois. Escolhe, filtra e calcula o teu pedido.
+                </p>
+
+                <div class="hero-cta">
+
+                    <a class="btn btn-accent btn-lg" id="hero-cta-btn" href="#product-list">Ver catálogo</a>
+
+                    <!-- Seta a apontar ao botão. Aparece uns instantes depois de a página
+                         abrir e fica a pulsar até a pessoa lhe ligar. É decoração pura,
+                         daí o aria-hidden: para um leitor de ecrã não existe. -->
+
+                    <span class="hero-cue" id="hero-cue" aria-hidden="true">&larr;</span>
+
+                </div>
+
+            </div>
+
+            <!-- Faixa decorativa: escondida dos leitores de ecrã por não ter valor informativo -->
+
+            <div class="hero-marquee" aria-hidden="true">
+
+                <div class="hero-marquee-track">
+
+                    <span>Hybrid Theory</span><span>&bull;</span><span>Meteora</span><span>&bull;</span>
+                    <span>Minutes to Midnight</span><span>&bull;</span><span>A Thousand Suns</span><span>&bull;</span>
+                    <span>Living Things</span><span>&bull;</span><span>From Zero</span><span>&bull;</span>
+                    <span>Hybrid Theory</span><span>&bull;</span><span>Meteora</span><span>&bull;</span>
+                    <span>Minutes to Midnight</span><span>&bull;</span><span>A Thousand Suns</span><span>&bull;</span>
+                    <span>Living Things</span><span>&bull;</span><span>From Zero</span><span>&bull;</span>
+
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main id="main-content">
+
+        <!-- ==== 1. Filtro por Categoria ==== -->
+
+        <section id="filter-section" class="section" aria-labelledby="filter-title">
+
+            <div class="container">
+
+                <h2 class="section-title" id="filter-title">Filtrar por categoria</h2>
+                <p class="section-subtitle">Reduz o catálogo à categoria que te interessa.</p>
+
+                <div class="filter-bar">
+
+                    <div class="filter-field">
+
+                        <label for="category-filter" class="form-label">Categoria</label>
+
+                        <select id="category-filter" class="form-select" aria-describedby="filter-count">
+
+                            <option value="">Todas as categorias</option>
+
+                            <!-- As restantes opções vêm do array "categories" do catalog.json -->
+
+                        </select>
+
+                    </div>
+
+                    <!-- aria-live: o leitor de ecrã anuncia quantos produtos ficaram visíveis -->
+
+                    <p class="filter-count" id="filter-count" role="status" aria-live="polite"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==== 2. Lista de Produtos ==== -->
+
+        <section id="product-list" class="section" aria-labelledby="catalog-title">
+
+            <div class="container">
+
+                <!-- Título e atalho na mesma linha: quem já desceu até ao catálogo
+                     consegue voltar ao filtro sem ter de subir a página à mão. -->
+
+                <div class="section-head">
+
+                    <h2 class="section-title" id="catalog-title">Catálogo</h2>
+
+                    <a class="btn-ghost section-head-action" href="#filter-section" id="go-to-filter">
+                        Filtrar<span aria-hidden="true"> &uarr;</span>
+                    </a>
+
+                </div>
+
+                <p class="section-subtitle">Carregado a partir do <code>catalog.json</code> por AJAX.</p>
+
+                <!-- Grelha preenchida dinamicamente por scripts.js -->
+
+                <div id="product-grid" class="row g-4" aria-busy="true">
+
+                    <p class="loading-msg">A carregar produtos&hellip;</p>
+                
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==== 3. Calculadora ==== -->
+
+        <section id="order-form" class="section section-alt" aria-labelledby="order-title">
+
+            <div class="container">
+
+                <h2 class="section-title" id="order-title">Calcular valor total</h2>
+                <p class="section-subtitle">Adiciona um ou mais produtos ao pedido e calcula quanto vais pagar.</p>
+
+                <form id="calc-form" class="order-card" novalidate>
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <label for="product" class="form-label">Escolhe um produto</label>
+
+                            <select id="product" name="product" class="form-select" aria-describedby="form-error"
+                                required>
+                                <option value="">-- Seleciona um produto --</option>
+                                <!-- Opções inseridas por scripts.js -->
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <label for="quantity" class="form-label">Quantidade</label>
+
+                            <input type="number" id="quantity" name="quantity" class="form-control" min="1" step="1"
+                                value="1" inputmode="numeric" aria-describedby="quantity-help form-error" required>
+
+                            <span id="quantity-help" class="field-help">Número inteiro igual ou superior a 1.</span>
+
+                        </div>
+
+                        <div class="col-md-3 d-flex align-items-start">
+
+                            <!-- type="button" para não submeter o formulário nem recarregar a página -->
+                            <button type="button" id="add-product" class="btn btn-accent w-100">Adicionar ao
+                                pedido</button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Mensagem de validação. role="alert" faz o leitor de ecrã anunciá-la de imediato. -->
+
+                    <p id="form-error" class="form-error" role="alert"></p>
+
+                    <!-- Mensagem mostrada enquanto o pedido não tiver nenhuma linha -->
+
+                    <p id="order-empty" class="order-empty">
+                        Ainda não adicionaste produtos. Podes juntar vários e somar tudo de uma vez.
+                    </p>
+
+                    <!-- Linhas do pedido. Uma tabela porque os dados são mesmo tabulares:
+                         cada linha é um produto e cada coluna uma característica dele. -->
+
+                    <table id="order-lines" class="order-table" hidden>
+
+                        <caption class="visually-hidden">Produtos adicionados ao pedido</caption>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Produto</th>
+                                <th scope="col" class="cell-num">Preço</th>
+                                <th scope="col" class="cell-num">Qtd.</th>
+                                <th scope="col" class="cell-num">Subtotal</th>
+                                <th scope="col"><span class="visually-hidden">Remover</span></th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="order-lines-body">
+                            <!-- Linhas inseridas por scripts.js -->
+                        </tbody>
+
+                    </table>
+
+                    <!-- Botões de ação do pedido -->
+
+                    <div class="order-actions">
+
+                        <button type="button" id="calculate" class="btn btn-accent">Calcular valor total</button>
+
+                        <button type="button" id="place-order" class="btn btn-accent">Fazer pedido</button>
+
+                        <button type="button" id="clear-order" class="btn-ghost" hidden>Limpar pedido</button>
+
+                    </div>
+
+                    <!-- Resultado do cálculo -->
+
+                    <div class="total-box">
+
+                        <span class="total-label" id="total-label">Total do pedido</span>
+
+                        <output id="total-value" class="total-value" for="product quantity"
+                            aria-labelledby="total-label" aria-live="polite">0,00 &euro;</output>
+
+                    </div>
+
+                    <!-- Confirmação do pedido. role="status" é mais discreto que o
+                         role="alert" do erro: o leitor de ecrã espera pela pausa. -->
+
+                    <p id="order-success" class="form-success" role="status" aria-live="polite" hidden></p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ============ Footer ============ -->
+
+    <footer id="site-footer">
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-md-5">
+
+                    <img src="assets/images/lp-logo.png" class="footer-logo" alt="Logótipo dos Linkin Park" width="496"
+                        height="481">
+
+                    <h2 class="footer-brand">Linkin Park <em>Store</em></h2>
+
+                    <p class="footer-note">
+                        Projeto académico sem fins comerciais, desenvolvido no âmbito do
+                        Caso Prático de Final de Módulo &mdash; JavaScript Avançado.
+                        Não é uma loja real nem tem ligação à banda.
+                    </p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h3 class="footer-title">Categorias</h3>
+
+                    <ul class="footer-list">
+                        <li>Música</li>
+                        <li>Vestuário</li>
+                        <li>Acessórios</li>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <h3 class="footer-title">Contacto</h3>
+
+                    <ul class="footer-list">
+                        <li><a href="mailto:geral@linkinparkstore.pt">geral@linkinparkstore.pt</a></li>
+                        <li><a href="tel:+351200000000">+351 200 000 000</a></li>
+                        <li>Lisboa, Portugal</li>
+                        <li><a href="includes/contacto.html">Formulário e mapa</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <hr class="footer-rule">
+            <p class="footer-copy">&copy; 2026 Nuno Luis Braga &middot; Master D &middot; Desenvolvedor Full Stack</p>
+
+        </div>
+    </footer>
+
+    <!-- ============ Lightbos de Detalhes (fora do <main>) ============ -->
+
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+
+        <div class="lightbox-backdrop" data-close="true"></div>
+
+        <div class="lightbox-content">
+
+            <button type="button" id="lightbox-close" class="close-btn" aria-label="Fechar detalhe do produto">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <img id="lightbox-image" class="lightbox-image"
+                src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+
+            <div class="lightbox-body">
+
+                <p class="lightbox-category" id="lightbox-category"></p>
+                <h2 id="lightbox-title" class="lightbox-title">Detalhe do produto</h2>
+                <p id="lightbox-description" class="lightbox-description"></p>
+                <p id="lightbox-price" class="lightbox-price"></p>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="assets/js/scripts.js" defer></script>
+
+</body>
+
+</html>

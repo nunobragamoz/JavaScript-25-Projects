@@ -1,0 +1,1437 @@
+
+/* ---------- 1. Tokens de design ---------- */
+
+:root {
+    --ink: #0b0b0c;
+    --surface: #141416;
+    --surface-2: #1b1b1f;
+    --line: rgba(255, 255, 255, 0.10);
+    --text: #eceae7;
+    --muted: #9b9ba3;
+    --accent: #ff6b1a;
+    --accent-soft: #ffb347;
+
+    --font-display: "Oswald", "Arial Narrow", sans-serif;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --radius: 4px;
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+    --transition: 220ms ease;
+
+    /* Altura do menu colado ao topo. Este valor é só o de partida: o scripts.js
+       mede o menu de verdade no arranque e volta a escrevê-lo aqui. */
+    --nav-height: 71px;
+}
+
+/* ---------- 2. Base ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Os saltos para as âncoras (#filter-section, #product-list…) deslizam
+   em vez de mudar de sítio de repente */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* O menu fica colado ao topo e tapava o início da secção para onde se salta;
+   esta margem reserva-lhe o espaço. Tem de ser exatamente a altura do menu:
+   a mais, espreita um bocado da secção anterior por baixo dele. */
+
+section[id],
+.hero[id] {
+    scroll-margin-top: var(--nav-height);
+}
+
+body {
+    background-color: var(--ink);
+    /* textura de grão subtil por cima do fundo escuro */
+    background-image: radial-gradient(circle at 12% -10%, rgba(255, 107, 26, 0.14), transparent 45%),
+        radial-gradient(circle at 88% 8%, rgba(120, 130, 150, 0.10), transparent 40%);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+.navbar-brand,
+.btn {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+a {
+    color: var(--accent-soft);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+::selection {
+    background: var(--accent);
+    color: #000;
+}
+
+code {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 0.1em 0.4em;
+    color: var(--accent-soft);
+    font-size: 0.88em;
+}
+
+/* Ligação de salto: só aparece quando recebe foco pelo teclado */
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 1200;
+    background: var(--accent);
+    color: #0b0b0c;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.7rem 1.2rem;
+    border-radius: var(--radius);
+    transition: top 160ms ease;
+}
+
+.skip-link:focus {
+    top: 1rem;
+    color: #0b0b0c;
+}
+
+/* ---------- 3. Nav ---------- */
+
+#main-nav {
+    background: rgba(11, 11, 12, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding-block: 0.75rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.15rem;
+    color: var(--text) !important;
+}
+
+/* Logótipo da banda (PNG branco sobre transparente) */
+
+.brand-logo {
+    height: 36px;
+    width: auto;
+}
+
+.brand-text em {
+    font-style: normal;
+    color: var(--accent);
+}
+
+#main-nav .nav-link {
+    color: var(--muted);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    position: relative;
+    transition: color var(--transition);
+}
+
+#main-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.15rem;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+#main-nav .nav-link:hover,
+#main-nav .nav-link:focus {
+    color: var(--text);
+}
+
+#main-nav .nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* ---------- 4. Banner ---------- */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+
+    /* fotografia de grupo da banda como background */
+
+    background-image: url("../images/banda-grupo.webp");
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+}
+
+/* Véu escuro por cima da fotografia: garante contraste suficiente no texto.
+   Mais denso à esquerda, onde assenta o título, e mais leve à direita,
+   deixando a banda ter por onde respirar kkkk. */
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg,
+            rgba(11, 11, 12, 0.96) 0%,
+            rgba(11, 11, 12, 0.88) 36%,
+            rgba(11, 11, 12, 0.52) 66%,
+            rgba(11, 11, 12, 0.28) 100%);
+    pointer-events: none;
+}
+
+/* Riscas diagonais por cima do véu */
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: repeating-linear-gradient(115deg,
+            rgba(255, 255, 255, 0.035) 0 2px,
+            transparent 2px 26px);
+    pointer-events: none;
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+    padding-block: clamp(4rem, 12vw, 8.5rem) clamp(3rem, 8vw, 5rem);
+    max-width: 820px;
+}
+
+.hero-kicker {
+    color: var(--accent);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 11vw, 7rem);
+    font-weight: 700;
+    line-height: 0.92;
+    margin: 0 0 1.25rem;
+    text-shadow: 0 0 40px rgba(255, 107, 26, 0.25);
+}
+
+.hero-title-sub {
+    display: block;
+    font-size: 0.34em;
+    letter-spacing: 0.42em;
+    color: var(--muted);
+    margin-top: 0.8rem;
+}
+
+.hero-lead {
+    color: var(--muted);
+    font-size: 1.08rem;
+    max-width: 55ch;
+    margin-bottom: 2rem;
+}
+
+.hero-lead em {
+    color: var(--text);
+    font-style: italic;
+}
+
+/* Botão do catálogo e a seta que o aponta, lado a lado */
+
+.hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* A seta não está lá desde o início: entra sozinha 1,4 s depois de a página
+   abrir (o tempo de se olhar para o título) e a seguir fica a pulsar em
+   direção ao botão. As duas animações correm em cadeia — a de entrada deixa
+   a seta visível (forwards) e a de brilho pega logo a seguir. */
+
+.hero-cue {
+    font-size: 1.9rem;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0;
+    animation:
+        cue-entrada 500ms ease 1.4s forwards,
+        cue-brilho 1.8s ease-in-out 1.9s infinite;
+}
+
+@keyframes cue-entrada {
+    from {
+        opacity: 0;
+        transform: translateX(1.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes cue-brilho {
+
+    0%,
+    100% {
+        transform: translateX(0);
+        text-shadow: none;
+    }
+
+    50% {
+        transform: translateX(-0.55rem);
+        text-shadow: 0 0 20px rgba(255, 107, 26, 0.95), 0 0 8px rgba(255, 179, 71, 0.8);
+    }
+}
+
+/* Assim que a pessoa carrega no botão ou começa a descer a página, a seta já
+   cumpriu o que tinha a fazer e sai de cena. */
+
+/* O opacity: 0 é uma rede de segurança: quem manda na opacidade é a animação,
+   mas se por alguma razão ela não correr, a seta desaparece à mesma em vez de
+   ficar ali para sempre a apontar. */
+
+.hero-cue.is-done {
+    opacity: 0;
+    animation: cue-saida 400ms ease forwards;
+}
+
+@keyframes cue-saida {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* faixa de álbuns em linha */
+
+.hero-marquee {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    overflow: hidden;
+    padding-block: 0.7rem;
+}
+
+.hero-marquee-track {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: marquee 38s linear infinite;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.hero-marquee-track span:nth-child(even) {
+    color: var(--accent);
+}
+
+/*Animação de deslize */
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* ---------- 5. Botões ---------- */
+
+.btn-accent {
+    background: var(--accent);
+    color: #0b0b0c;
+    border: none;
+    font-weight: 600;
+    padding-inline: 1.8rem;
+    border-radius: var(--radius);
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.btn-accent:hover,
+.btn-accent:focus {
+    background: var(--accent-soft);
+    color: #0b0b0c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(255, 107, 26, 0.32);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1.1rem;
+    transition: border-color var(--transition), color var(--transition);
+}
+
+.btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ---------- 6. Secções ---------- */
+
+.section {
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+}
+
+/* O filtro e o catálogo são a mesma unidade visual: encosta um ao outro */
+
+#filter-section {
+    padding-bottom: 0;
+}
+
+/* Ao saltar para o catálogo há duas coisas a acontecer ao mesmo tempo: a barra
+   do filtro tem de sair toda do ecrã e o título "Catálogo" tem de ficar à
+   vista, por baixo do menu. Só é possível se o espaço entre as duas for, pelo
+   menos, tão alto como o menu — daí o max(). Com a margem do salto a zero, a
+   secção encosta ao topo: o filtro fica mesmo acima do ecrã e o título aparece
+   à altura certa. */
+
+#product-list {
+    padding-top: max(var(--nav-height), clamp(1.75rem, 4vw, 2.5rem));
+    scroll-margin-top: 0;
+}
+
+.section-alt {
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.025) 30%, transparent);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+/* Título à esquerda e um atalho à direita, na mesma linha */
+
+.section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.section-head .section-title {
+    margin-bottom: 0;
+}
+
+/* Compensa o 0.35rem que o título perdeu ali em cima, para o subtítulo
+   continuar à mesma distância do que está por baixo. */
+
+.section-head + .section-subtitle {
+    margin-top: 0.35rem;
+}
+
+.section-head-action {
+    white-space: nowrap;
+}
+
+.section-title {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    margin-bottom: 0.35rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.18em;
+    bottom: 0.18em;
+    width: 4px;
+    background: var(--accent);
+}
+
+.section-subtitle {
+    color: var(--muted);
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    font-size: 0.875rem;
+}
+
+/* No catálogo o subtítulo fica 5px mais perto da grelha do que nas
+   outras secções */
+
+#product-list .section-subtitle {
+    margin-bottom: calc(2rem - 5px);
+}
+
+/* ---------- 7. Barra de filtro ---------- */
+
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+}
+
+.filter-field {
+    flex: 0 1 320px;
+}
+
+.filter-bar .form-label,
+.order-card .form-label,
+.contact-card .form-label {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+}
+
+.filter-bar .form-select {
+    width: 100%;
+}
+
+.filter-count {
+    margin: 0 0 0 auto;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.filter-count strong {
+    color: var(--accent);
+}
+
+/* Campos de formulário no tema escuro */
+
+.form-select,
+.form-control {
+    background-color: var(--surface-2);
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: var(--radius);
+    padding: 0.6rem 0.85rem;
+}
+
+.form-select:focus,
+.form-control:focus {
+    background-color: var(--surface-2);
+    color: var(--text);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.18);
+}
+
+.form-control::placeholder {
+    color: #6d6d75;
+}
+
+/* Estado inválido, aplicado por scripts.js quando a validação falha */
+
+.form-select.is-invalid,
+.form-control.is-invalid {
+    border-color: #ff6b6b;
+    background-image: none;
+}
+
+.form-select.is-invalid:focus,
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.22);
+}
+
+.field-help {
+    display: block;
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+/* ---------- 8. Grelha de produtos ---------- */
+
+.loading-msg,
+.empty-msg {
+    color: var(--muted);
+    padding: 2rem 1rem;
+}
+
+.product-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+/* :focus-within destaca o card quando o botão lá dentro recebe foco pelo teclado */
+
+.product-card:hover,
+.product-card:focus-within {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+}
+
+/* As fotografias de produto vêm recortadas sobre fundo branco, por isso a
+   moldura também é branca e a imagem entra inteira (contain) em vez de ser
+   cortada (cover). Fica como se fosse uma montra de uma loja verdadeira. */
+
+   .product-media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    overflow: hidden;
+}
+
+.product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 6%;
+    display: block;
+    transition: transform 400ms ease;
+}
+
+.product-card:hover .product-media img {
+    transform: scale(1.06);
+}
+
+.product-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: rgba(11, 11, 12, 0.82);
+    border: 1px solid var(--line);
+    color: var(--accent);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.68rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 100px;
+}
+
+.product-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.1rem 1.2rem 1.3rem;
+    flex: 1;
+}
+
+.product-name {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.25;
+}
+
+.product-excerpt {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin: 0;
+    /* limita a pré-visualização a três linhas */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+}
+
+.product-price {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--accent);
+}
+
+.details-btn {
+    white-space: nowrap;
+}
+
+/* ---------- 9. Calculadora ---------- */
+
+/* A moldura da calculadora serve tal e qual para o formulário de contacto,
+   por isso as duas partilham a mesma regra em vez de a repetir. */
+
+.order-card,
+.contact-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+/* Alinha o botão com os campos, compensando a altura das etiquetas */
+
+@media (min-width: 768px) {
+    #order-form .col-md-3.d-flex {
+        padding-top: 1.9rem;
+    }
+}
+
+/* ---- Linhas do pedido ---- */
+
+.order-empty {
+    margin: 1.25rem 0 0;
+    padding: 1rem 1.25rem;
+    background: var(--ink);
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.order-table {
+    width: 100%;
+    margin-top: 1.25rem;
+    border-collapse: collapse;
+    font-size: 0.94rem;
+}
+
+/* O atributo hidden do HTML tem de continuar a mandar, mesmo quando
+   damos um display próprio à tabela mais abaixo (ver media query). */
+.order-table[hidden] {
+    display: none;
+}
+
+.order-table th {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-weight: 400;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+}
+
+.order-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+}
+
+/* A coluna do produto fica com o espaço que sobra; as restantes são estreitas
+   e fixas, para os números ficarem agrupados do lado direito. */
+.order-table th:nth-child(2),
+.order-table th:nth-child(3),
+.order-table th:nth-child(4) {
+    width: 110px;
+}
+
+.order-table th:nth-child(5) {
+    width: 60px;
+}
+
+/* Números alinhados à direita, para as casas decimais ficarem umas sobre as outras */
+.cell-num {
+    text-align: right;
+}
+
+.cell-subtotal {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+}
+
+.remove-btn {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.remove-btn:hover {
+    background: #ff6b6b;
+    border-color: #ff6b6b;
+    color: #0b0b0c;
+}
+
+.order-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.form-error {
+    min-height: 1.4rem;
+    margin: 0.9rem 0 0;
+    color: #ff6b6b;
+    font-size: 0.9rem;
+}
+
+.form-error:not(:empty)::before {
+    content: "\26A0  ";
+}
+
+/* O oposto da .form-error: em verde, com visto em vez de triângulo. Serve a
+   confirmação do pedido aqui e a do formulário da página de contacto. */
+
+.form-success {
+    margin: 0.9rem 0 0;
+    padding: 0.9rem 1.15rem;
+    background: rgba(93, 214, 148, 0.10);
+    border: 1px solid rgba(93, 214, 148, 0.45);
+    border-left: 3px solid #5dd694;
+    border-radius: var(--radius);
+    color: #a8ebc6;
+    font-size: 0.92rem;
+}
+
+.form-success::before {
+    content: "\2714  ";
+}
+
+.form-success[hidden] {
+    display: none;
+}
+
+.total-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    padding: 1.15rem 1.4rem;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+}
+
+.total-label {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.total-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: var(--accent);
+    line-height: 1;
+}
+
+/* pequena animacao sempre que o total é re-calculado */
+
+.total-value.is-updated {
+    animation: pop 320ms ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.09);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ---------- 10. Lightbox ---------- */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1080;
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 4, 5, 0.82);
+    backdrop-filter: blur(6px);
+    animation: fade 200ms ease;
+}
+
+.lightbox-content {
+    position: relative;
+    width: min(720px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    animation: rise 260ms ease;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    font-size: 1.6rem;
+    line-height: 1;
+    background: rgba(11, 11, 12, 0.75);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.close-btn:hover {
+    background: var(--accent);
+    color: #0b0b0c;
+}
+
+.lightbox-image {
+    width: 100%;
+    height: 42vh;
+    object-fit: contain;
+    padding: 1.5rem;
+    display: block;
+    background: #fff;
+}
+
+.lightbox-body {
+    padding: 1.5rem 1.75rem 1.9rem;
+}
+
+.lightbox-category {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.lightbox-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.85rem;
+}
+
+.lightbox-description {
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+}
+
+.lightbox-price {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent);
+    margin: 0;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* impede o fundo de deslizar com o lightbox aberto */
+
+body.lightbox-open {
+    overflow: hidden;
+}
+
+/* ---------- 11.Footer ---------- */
+
+#site-footer {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    padding-block: 3.5rem 2rem;
+    margin-top: 0;
+}
+
+.footer-logo {
+    height: 62px;
+    width: auto;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.footer-brand {
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.footer-brand em {
+    font-style: normal;
+    color: var(--accent);
+}
+
+.footer-note {
+    color: var(--muted);
+    font-size: 0.88rem;
+    max-width: 42ch;
+}
+
+.footer-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.footer-list li {
+    padding-block: 0.2rem;
+}
+
+.footer-rule {
+    border-color: var(--line);
+    opacity: 1;
+    margin-block: 2rem 1.25rem;
+}
+
+.footer-copy {
+    display: flex;
+    flex-wrap: wrap;
+    color: #6d6d75;
+    font-size: 0.82rem;
+    margin: 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* ---------- 12. Página de contacto ---------- */
+
+/* Banner mais baixo: nas páginas interiores o título não precisa de ocupar
+   meio ecrã, e o formulário ganha em aparecer mais cedo. */
+
+.hero-page .hero-inner {
+    padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(2rem, 5vw, 3rem);
+}
+
+.hero-page .hero-title {
+    font-size: clamp(2.6rem, 8vw, 5rem);
+}
+
+/* Marca a página onde estamos no menu */
+
+#main-nav .nav-link.active {
+    color: var(--text);
+}
+
+#main-nav .nav-link.active::after {
+    transform: scaleX(1);
+}
+
+/* ---- Formulário ---- */
+
+.contact-card textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* A checkbox do RGPD por defeito é branca sobre branco; aqui fica com o
+   mesmo fundo escuro dos outros campos. */
+
+.consent-check {
+    display: flex;
+    align-items: start;
+    gap: 0.6rem;
+    padding-top: 0.25rem;
+}
+
+.consent-check .form-check-input {
+    flex: 0 0 auto;
+    margin: 0.25rem 0 0;
+    background-color: var(--surface-2);
+    border: 1px solid var(--line);
+}
+
+.consent-check .form-check-input:checked {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.consent-check .form-check-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.18);
+}
+
+.consent-check .form-check-input.is-invalid {
+    border-color: #ff6b6b;
+}
+
+.consent-check .form-check-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+/* Contador de caracteres: fica laranja enquanto a mensagem for curta demais */
+
+#char-count.is-short {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ---- Informações da loja ---- */
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.info-card {
+    display: flex;
+    gap: 0.9rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.3rem;
+    transition: border-color var(--transition), transform var(--transition);
+}
+
+.info-card:hover {
+    transform: translateX(3px);
+    border-color: var(--accent);
+}
+
+.info-icon {
+    color: var(--accent);
+    font-size: 0.6rem;
+    line-height: 2.4;
+}
+
+.info-title {
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+/* O <address> vem em itálico por defeito do browser; aqui não faz sentido */
+
+.info-text {
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-style: normal;
+    margin: 0;
+}
+
+.info-note {
+    display: block;
+    margin-top: 0.35rem;
+    color: #6d6d75;
+    font-size: 0.78rem;
+}
+
+/* ---- Mapa ---- */
+
+/* A moldura é que manda na altura; os tiles lá dentro são posicionados
+   em píxeis pelo contacto.js e o que sobra fica cortado (overflow: hidden). */
+
+.map-frame {
+    position: relative;
+    height: clamp(300px, 45vh, 460px);
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.map-canvas {
+    position: absolute;
+    inset: 0;
+
+    /* Os tiles do OpenStreetMap são claros e berravam com o resto da página;
+       este filtro inverte-os para acompanharem o tema escuro. */
+    filter: grayscale(0.4) invert(0.92) hue-rotate(185deg) contrast(0.92);
+}
+
+.map-tile {
+    position: absolute;
+    width: 256px;
+    height: 256px;
+    /* sem isto, o browser deixa uma linha fina entre tiles vizinhos */
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Marcador da loja: fica no centro exato da moldura, que é onde o mapa é
+   desenhado a partir da morada. O anel por baixo vai pulsando. */
+
+.map-pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    background: var(--accent);
+    border: 2px solid #0b0b0c;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.35);
+}
+
+.map-pin::after {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ping 2.4s ease-out infinite;
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(0.5);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+/* Botões de aproximar e afastar, no canto superior direito do mapa */
+
+.map-controls {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: grid;
+    gap: 0.35rem;
+}
+
+.map-btn {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    background: rgba(11, 11, 12, 0.82);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.map-btn:hover:not(:disabled) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0b0b0c;
+}
+
+.map-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Atribuição obrigatória a quem usa os tiles do OpenStreetMap */
+
+.map-credit {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0.15rem 0.5rem;
+    background: rgba(11, 11, 12, 0.75);
+    border-top-left-radius: var(--radius);
+    color: var(--muted);
+    font-size: 0.7rem;
+}
+
+/* Rede em baixo: sobra a morada, centrada na moldura vazia */
+
+.map-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    margin: 0;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.map-fallback[hidden] {
+    display: none;
+}
+
+.map-note {
+    margin: 1rem 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+/* ---------- 13. Acessibilidade e responsividade ---------- */
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    /* Quem pediu menos movimento também não quer a página a deslizar */
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-field {
+        flex: 1 1 auto;
+    }
+
+    .filter-count {
+        margin-left: 0;
+    }
+
+    .hero-title-sub {
+        letter-spacing: 0.28em;
+    }
+
+    /* No telemóvel o botão de calcular ocupa a largura toda, 
+    por baixo dos campos */
+
+    #order-form .col-md-3.d-flex {
+        margin-top: 0.5rem;
+    }
+
+    .product-footer {
+        flex-wrap: wrap;
+    }
+
+    /* Cinco colunas não cabem num telemóvel: a tabela passa a deslizar
+       na horizontal em vez de espremer o texto todo. */
+    .order-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .order-actions .btn,
+    .order-actions .btn-ghost {
+        flex: 1 1 100%;
+    }
+
+    /* No telemóvel as informações da loja ficam por baixo do formulário,
+       com um pouco de ar a separar as duas colunas. */
+
+    .info-list {
+        margin-top: 0.5rem;
+    }
+}
