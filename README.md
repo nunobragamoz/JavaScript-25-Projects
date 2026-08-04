@@ -18,6 +18,7 @@ A 25-day journey of small projects built with HTML, CSS & vanilla JavaScript, by
 | 07 | [Countdown Timer ⏱️](day-07-countdown-timer/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-07-countdown-timer/) |
 | 08 | [Project Manager 📋](day-08-project-manager/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-08-project-manager/) |
 | 09 | [Project Lister 📂](day-09-project-lister/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-09-project-lister/) |
+| 10 | [Task Manager API 🔗](day-10-task-manager-api/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-10-task-manager-api/) |
 <!-- NEW_PROJECT_ROW -->
 
 ## Tech
