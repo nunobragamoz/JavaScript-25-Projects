@@ -19,6 +19,7 @@ A 25-day journey of small projects built with HTML, CSS & vanilla JavaScript, by
 | 08 | [Project Manager 📋](day-08-project-manager/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-08-project-manager/) |
 | 09 | [Project Lister 📂](day-09-project-lister/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-09-project-lister/) |
 | 10 | [Task Manager API 🔗](day-10-task-manager-api/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-10-task-manager-api/) |
+| 11 | [Linkin Park Store 🛒](day-11-Band-Store/loja-online/) | [Play](https://nunobragamoz.github.io/JavaScript-25-Projects/day-11-Band-Store/loja-online/) |
 <!-- NEW_PROJECT_ROW -->
 
 ## Tech
